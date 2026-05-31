@@ -31,7 +31,7 @@ export default function Destinations() {
     ? ALL_DESTINATIONS
     : ALL_DESTINATIONS.filter(d => d.continent === active);
 
-  // Reset refs array whenever the filtered list changes so stale DOM nodes are cleared
+
   revealRef.current = [];
 
   useEffect(() => {
@@ -54,8 +54,7 @@ export default function Destinations() {
 
     els.forEach(el => observer.observe(el));
 
-    // Safety fallback: if observer never fires (e.g. cards already in viewport),
-    // force-reveal everything after a short delay
+
     const fallback = setTimeout(() => {
       els.forEach(el => {
         el.style.opacity   = '1';
@@ -67,9 +66,9 @@ export default function Destinations() {
       observer.disconnect();
       clearTimeout(fallback);
     };
-  }, [filtered]); // re-run whenever the displayed list changes
+  }, [filtered]); 
 
-  // Collect refs inline — revealRef.current is reset above on each render
+
   const addReveal = el => {
     if (el) revealRef.current.push(el);
   };
